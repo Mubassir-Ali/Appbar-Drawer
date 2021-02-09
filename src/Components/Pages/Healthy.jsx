@@ -1,0 +1,11 @@
+import React from 'react'
+import healthy from "./../../Data/healthy.json";
+import Cards from './../Card/Cards'
+
+const Healthy = () => {
+    return (
+        <Cards val={healthy} title="Healthy" />
+    )
+}
+
+export default Healthy
