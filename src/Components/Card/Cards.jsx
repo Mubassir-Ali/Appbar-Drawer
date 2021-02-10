@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Card, CardActionArea, CardHeader } from '@material-ui/core';
 import { IconButton, Avatar, CardMedia } from '@material-ui/core';
 import { Container, Box, Grid } from '@material-ui/core';
@@ -18,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const Cards = ({val, title}) => {
+const Cards = ({val, title,start, end}) => {
 	const classes = useStyle();	
 
 	const data = val;
@@ -26,7 +26,7 @@ const Cards = ({val, title}) => {
 	return (
 		<Container component={Box} className={classes.root} pt={15}>
 			<Grid container spacing={5}>
-				{Object.entries(data.slice(0,30)).map(([ index, { authorImgURL, authorName, imgUrl, imgDesc } ]) => (
+				{Object.entries(data.slice(start,end)).map(([ index, { authorImgURL, authorName, imgUrl, imgDesc } ]) => (
 					<Grid item key={index} xs={12} sm={6} md={4} lg={3}>
 						<Card>
 							<CardActionArea>
@@ -38,6 +38,9 @@ const Cards = ({val, title}) => {
 										<IconButton>
 											<ShoppingCartIcon />
 										</IconButton>
+
+									
+									
 									}
 								/>
 								<CardMedia component="img" className={classes.cardMedi} src={imgUrl} />

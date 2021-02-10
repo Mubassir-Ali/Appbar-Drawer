@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Divider } from '@material-ui/core';
 import { Typography, makeStyles } from '@material-ui/core';
 import { List, ListItem, ListItemText, SwipeableDrawer } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cx from 'classname';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
@@ -27,14 +27,20 @@ const useStyle = makeStyles((theme) => ({
 			display: 'flex'
 		}
 	},
+	active:{
+		color:theme.palette.warning.main
+
+	},
 	drawer: {
 		width: 250
 	},
 	appbarColor:{
 		backgroundColor:theme.palette.grey.A400
 	},
-	mobileMenuColor:theme.palette.primary
-}));
+
+}
+
+));
 
 const Appbar = () => {
 	const classes = useStyle();
@@ -58,51 +64,56 @@ const Appbar = () => {
 						Food Street
 					</Typography>
 					<div className={cx(classes.sectionMobile, classes.menu)}>
-						<Button color="inherit" fullWidth component={Link} to="/">
+						<Button color="inherit" fullWidth component={NavLink} to="/" exact activeClassName={classes.active} >
 							Coffee
 						</Button>
-						<Button color="inherit" fullWidth component={Link} to="/desert">
+						<Button color="inherit" fullWidth component={NavLink}  to="/desert" exact activeClassName={classes.active} >
 							Desert
 						</Button>
-						<Button color="inherit" fullWidth component={Link} to="/healthy">
+						<Button color="inherit" fullWidth component={NavLink}  to="/healthy" exact activeClassName={classes.active} >
 							Healthy
 						</Button>
-						<Button color="inherit" fullWidth component={Link} to="/meat">
+						<Button color="inherit" fullWidth component={NavLink}  to="/meat" exact activeClassName={classes.active} >
 							Meat
 						</Button>
-						<Button color="inherit" fullWidth component={Link} to="/pizza">
+						<Button color="inherit" fullWidth component={NavLink}  to="/pizza" exact activeClassName={classes.active}>
 							Pizza
 						</Button>
 					</div>
 
+					<div >
 					<IconButton edge="end" color="inherit" className={cx(classes.more)} onClick={drawerOpen}>
 						<MoreVertIcon />
 					</IconButton>
+
+					</div>
+
+					
 				</Toolbar>
 			</AppBar>
 
-			<SwipeableDrawer open={open} onClose={drawerClose} className={classes.mobileMenuColor}>
+			<SwipeableDrawer open={open} onClose={drawerClose}>
 				<List disablePadding className={classes.drawer}>
 					<Toolbar />
 					<Divider />
 
-					<ListItem button onClick={drawerClose} component={Link} to="/">
+					<ListItem button onClick={drawerClose} component={NavLink}  to="/">
 						<ListItemText primary="Coffee" />
 					</ListItem>
 
-					<ListItem button onClick={drawerClose} component={Link} to="/desert">
+					<ListItem button onClick={drawerClose} component={NavLink}  to="/desert">
 						<ListItemText primary="Desert" />
 					</ListItem>
 
-					<ListItem button onClick={drawerClose} component={Link} to="/healthy">
+					<ListItem button onClick={drawerClose} component={NavLink}  to="/healthy">
 						<ListItemText primary="Healthy" />
 					</ListItem>
 
-					<ListItem button onClick={drawerClose} component={Link} to="/meat">
+					<ListItem button onClick={drawerClose} component={NavLink}  to="/meat">
 						<ListItemText primary="Meat" />
 					</ListItem>
 
-					<ListItem button onClick={drawerClose} component={Link} to="/pizza">
+					<ListItem button onClick={drawerClose} component={NavLink}  to="/pizza">
 						<ListItemText primary="Pizza" />
 					</ListItem>
 				</List>
